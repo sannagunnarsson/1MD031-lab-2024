@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+    <title>Super Burgers</title>
+    <meta charset="utf-8"/> 
+    <!-- For using non latin characters -->
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+
+</head>
+
+<body>
+
+    <header class="header-container">
+            <h1>Välkommen till BurgerOnline</h1>
+            <img src="Header.png" alt="Header image">
+    </header>
+
+    
+    <section class="burgers">
+            <h2>Menu alternatives</h2>
+        <p>This is where you execute burger selection</p>
+        
+        <div class="burger-item a">
+                <h3>The Fat Burger</h3>
+            <img src="https://res.cloudinary.com/anora/image/upload/t_HeroFullWidthImage-SM-SM/f_auto/folkofolk%2Fklassisk-hamburgare_2" alt="Hamburgare" title="Burgare 1" style="width: 200px;">
+            <ul>
+                <li>Fresh ingredients</li>
+                <li>100% beef patty</li>
+                <li><span id="free">Gluten free </span>bun</li>
+                <li><span id="free">Lactose free</span></li>
+            </ul>
+        </div>
+
+        <div class="burger-item b">
+            <h3>Classic Cheeseburger</h3>
+            <img src="https://www.foodrepublic.com/img/gallery/all-american-cheeseburger-recipe/intro-import.jpg" alt="Hamburgare" title="Burgare 2" style="width: 200px;">
+            <ul>
+                <li>Grilled beef patty</li>
+                <li>Melted cheddar cheese</li>
+                <li><span id="contains">Contains gluten</span></li>
+                <li><span id="contains">Contains lactose</span></li>
+            </ul>
+        </div>
+
+        <div class="burger-item c">
+            <h3>Veggie Delight Burger</h3>
+            <img src="https://shop.naanfusion.in/wp-content/uploads/2024/07/veg-delight-burger.png" alt="Hamburgare" title="Burgare 3" style="width: 200px;">
+            <ul>
+                <li>Tasty bean patty</li>
+                <li>Topped with avocado and veggies</li>
+                <li>Lime aioli</li>
+                <li><span id="contains">Contains lactose</span></li>
+            </ul> 
+    </div>
+
+
+</section>
+
+    <main>
+        <section class="information">            
+            <h2>Customer information</h2>
+            <p>This is where you provide necessary information</p>
+        
+        
+            <form>
+                <p>
+                    <label for="fullname">Full Name</label><br>
+                    <input type="text" id="fullname" name="fn" required="required" placeholder="First- and Last name">
+                </p>
+                <p>
+                    <label for="email">E-mail</label><br>
+                    <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+                </p>
+                <p>
+                    <label for="street">Street</label><br>
+                    <input type="text" id="street" name="st" required="required" placeholder="Street name">
+                </p>
+                <p>
+                    <label for="house">House</label><br>
+                    <input type="number" id="house" name="hn" required="required" placeholder="House number">
+                </p>
+
+                <p>
+                    <label for="payment">Payment options</label><be>
+                    <select id="payment" name="pay">
+                        <option selected="selected">Credit card </option>
+                        <option>Swish</option>
+                        <option>PayPal</option>
+                        <option>Debit card</option>
+                        <option>Apple Pay</option>
+                    </select>
+                </p>
+
+                <p>Gender</p>
+                
+                <p>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                </p>
+
+                <p>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                </p>
+
+                <p>
+                    <input type="radio" id="nb" name="gender" value="nb">
+                    <label for="nb">Non-binary</label>
+                </p>
+
+                <p>
+                    <input type="radio" id="undisclosed" name="gender" value="undisclosed" checked>
+                    <label for="undisclosed"> Undisclosed </label>
+                </p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+<section>
+    <button type="submit">
+        <img src="Food-delivery-man.png" style="width: 70px;">
+        Place my order!
+      </button>
+</section>
+
+    <footer>
+        <hr>
+       <p>&copy; 2024 Sannas burgare AB.</p>
+
+    </footer>
+
+</body>
+
+
+</html>
