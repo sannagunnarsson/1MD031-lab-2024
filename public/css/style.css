@@ -1,22 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
 body {
     font-size: 12pt;
+    font-family: Lexend Deca, sans-serif;
 }
 
+
 p {
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 h1 {
-    font-family: 'Agbalumo';
+    font-family: 'Agbalumo', sans-serif;
     font-size: 36pt;
 }
 main, header, footer, nav ul {
-    max-width: 40rem;
-    margin: 0 auto 0 auto;
+    min-width: 40rem;
+    margin: 0 20px 0 20px;
 }
+
 main {
-    background-color: bisque;
+    background-color: rgb(176, 195, 172);
+    border-style: dashed;
+    border-width: 4px;
+    border-color: rgb(103, 120, 99);
 }
 
 /* nav ul li {
@@ -26,19 +32,14 @@ main {
     margin: 1em;
 } */
 
-header {
-    background-image: url("../img/polacks.jpg");
-    background-size: cover;
-    overflow: hidden;
-    width: 100%;
-    height: 200px;
-    opacity: 0.5;
-}
-
 header h1 {
-    width:40rem;
-    margin: 0 auto;
-    text-align: center;
+    font-family: 'Agbalumo', sans-serif;
+    font-size: 36pt;
+    color: black;
+    margin: 4px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 20%;
 }
 
 nav ul {
@@ -54,6 +55,18 @@ nav li {
     padding: 1em;
 }
 
+div {
+    padding: 40px;
+    border-width: 2px;
+    border-style: groove;
+    border-color: rgb(88, 132, 87);
+    border-radius: 19%;
+}
+
+section {
+    margin: 20px;
+}
+
 .Very-good {
     color: green;
 }
@@ -62,3 +75,101 @@ nav li {
     color: green;
     font-weight: bold;
 }
+
+.header-container {
+    border-image: fill; /* Gör bilden lika bred som headern */
+    height: auto;
+    margin: 20px;
+    overflow:hidden;
+}
+
+.header-container img{
+    opacity: 0.6;
+    width: 100%;
+    height: 100px; 
+}
+
+.burgers{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 32% 32% 32%;
+    background-color: rgb(145, 167, 141);
+    color: rgb(255, 255, 255);
+    padding-left: 20px;
+    padding-bottom: 20px;
+
+    #free{
+        color: rgb(200, 227, 200);
+        font-weight: bold;
+    }
+    #contains{
+        color: rgb(255, 246, 166);
+        font-weight: bold;
+    }
+}
+
+.burgers h2{
+    font-weight: bold;
+    font-size:28pt;
+    margin-bottom: 4px;
+}
+
+.burgers p{
+    font-size: 12pt;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.burger-item{
+    background-color: #6b8a6e; /* Individuella burger-kort */
+    padding: 5px;
+    border-radius: 8px;
+    border-style: groove;
+    border-width: 10px;
+    text-align: center;
+}
+
+.a{
+    grid-column: 1;
+}
+.b {
+    grid-column: 2 ;
+}
+.c {
+    grid-column: 3;  
+}
+
+.information{
+    padding: 2px;
+    margin-top: 2px;
+    font-weight: bold;
+
+}
+
+button:hover{
+    background-color: green;
+}
+
+button {
+    margin: 40px;
+}
+
+burgers: [
+        {
+        name: "The Fat Burger",
+        url: "https://res.cloudinary.com/anora/image/upload/t_HeroFullWidthImage-SM-SM/f_auto/folkofolk%2Fklassisk-hamburgare_2",
+        gluten: false,
+        lactose: false,
+        },
+        {
+        name: "The Fat Burger",
+        url: "https://res.cloudinary.com/anora/image/upload/t_HeroFullWidthImage-SM-SM/f_auto/folkofolk%2Fklassisk-hamburgare_2",
+        gluten: false,
+        lactose: false,
+        },
+        {
+        name: "The Fat Burger",
+        url: "https://res.cloudinary.com/anora/image/upload/t_HeroFullWidthImage-SM-SM/f_auto/folkofolk%2Fklassisk-hamburgare_2",
+        gluten: false,
+        lactose: false,
+        },

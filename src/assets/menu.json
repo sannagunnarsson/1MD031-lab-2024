@@ -1,21 +1,24 @@
 [{
-    "name": "Veggie Bliss", 
-    "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
+    "name": "The Fat Burger", 
+    "url": "https://res.cloudinary.com/anora/image/upload/t_HeroFullWidthImage-SM-SM/f_auto/folkofolk%2Fklassisk-hamburgare_2",
     "lactose": false, 
-    "gluten": false
+    "gluten": false,
+    "ingredients": ["Fresh ingredients", "100% beef patty"],
+    "kCal": 300
 },
 {
-    "name": "Veggie Bliss", 
-    "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
-    "lactose": false, 
-    "gluten": false
+    "name": "Classic Cheeseburger", 
+    "url": "https://www.foodrepublic.com/img/gallery/all-american-cheeseburger-recipe/intro-import.jpg",
+    "lactose": true, 
+    "gluten": true,
+    "ingredients": ["Grilled beef patty", "Melted cheddar cheese"],
+    "kCal": 566
 },
 {
-    "name": "Veggie Bliss", 
-    "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
+    "name": "Veggie Delight Burger", 
+    "url": "https://shop.naanfusion.in/wp-content/uploads/2024/07/veg-delight-burger.png",
     "lactose": false, 
-    "gluten": false
+    "gluten": true,
+    "ingredients": ["Tasty bean patty", "Topped with avocado and veggies", "Lime aioli"],
+    "kCal": 677
 }]
