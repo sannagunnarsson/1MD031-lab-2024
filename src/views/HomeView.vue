@@ -5,20 +5,22 @@
     </header>
   </div>
 
+  <!-- Sektion för att visa burgarmenyn -->
   <section class="burgers">
     <div class="menu-header"></div>
     <div>
       <h2>Menu alternatives</h2>
       <p>This is where you execute burger selection</p>
     </div>
-    <!-- Dynamiskt generera burgare -->
 
+    <!-- Dynamiskt generera burgare -->
     <div class="burger-grid">
       <OneBurger v-for="burger in burgers" v-bind:burger="burger" v-bind:key="burger.name" v-bind:reset="resetSignal"
         v-on:updateOrder="addToOrder" />
     </div>
   </section>
 
+  <!-- Sektion för kundinformation -->
   <main>
     <section class="information">
       <h2>Customer information</h2>
@@ -45,6 +47,7 @@
           Please indicate point of delivery:
         </p>
 
+        <!-- Kartfunktion för att välja leveransplats -->
         <div class="map-container">
           <div id="map" v-on:click="setLocation">
           </div>
@@ -77,9 +80,13 @@
 
   <!-- Knappen för att skicka beställning -->
   <section class="order-button">
+
+    <!-- Felmeddelanden -->
     <section class="validation-message" v-if="validationMessage">
       <p class="error-message">{{ validationMessage }}</p>
     </section>
+
+    <!-- Framgångsmeddelanden -->
     <section class="success-message" v-if="successMessage">
       <p class="success-message-text">{{ successMessage }}</p>
     </section>
@@ -111,24 +118,28 @@ export default {
   components: { OneBurger },
   data: function () {
     return {
-      burgers: menu,
-      orderedBurgers: {},
-      clickPosition: { x: 0, y: 0 },
+      burgers: menu,    // Lista över tillgängliga burgare
+      orderedBurgers: {},    // Objekt för att hålla beställda burgare
+      clickPosition: { x: 0, y: 0 },    // Position där användaren klickar på kartan
+
+      // Kundinformation
       customer: {
         name: '',
         email: '',
         payment: 'Credit Card',
         gender: 'undisclosed',
       },
+
+      // Tillgängliga betalningsalternativ
       paymentOptions: ["Credit card", "Swish", "PayPal", "Debit card", "Apple Pay"],
       resetSignal: false, // Signal för att nollställa antalet burgare
-      validationMessage: '',
-      successMessage: '' // Meddelande för framgångsrik order
+      validationMessage: '',    // Felmeddelanden
+      successMessage: '' // Meddelande för godkänd order
 
     };
   },
   methods: {
-    // Visa kundinformation och vald burgare i konsolen
+    // Visar kundinformation och vald burgare i konsolen
     getOrderInformation: function () {
       console.log("Order details:");
       console.log("Customer Name:", this.customer.name);
@@ -142,8 +153,12 @@ export default {
       return Math.floor(Math.random() * 100);
     },
 
+    // Funktion för att skicka beställning
     addOrder: function (event) {
-      // Kontrollera att alla obligatoriska fält är ifyllda
+
+      // Kontrollerar att alla obligatoriska fält är ifyllda genom olika kontroller
+      //Återger olika felmeddelanden
+
       if (Object.keys(this.orderedBurgers).length === 0) {
         this.validationMessage = "You need to add at least one burger to your order!";
         this.successMessage = ''; // Rensa framgångsmeddelandet
@@ -152,36 +167,34 @@ export default {
       }
       if (!this.customer.name) {
         this.validationMessage = "Please enter your full name.";
-        this.successMessage = ''; // Rensa framgångsmeddelandet
+        this.successMessage = '';
 
         return;
       }
 
       if (!this.customer.email) {
         this.validationMessage = "Please enter a valid email address.";
-        this.successMessage = ''; // Rensa framgångsmeddelandet
-
+        this.successMessage = '';
         return;
       }
 
       if (!this.customer.payment) {
         this.validationMessage = "Please select a payment method.";
-        this.successMessage = ''; // Rensa framgångsmeddelandet
-
+        this.successMessage = '';
         return;
       }
 
       if (this.clickPosition.x === 0 && this.clickPosition.y === 0) {
         this.validationMessage = "Please select a location on the map.";
-        this.successMessage = ''; // Rensa framgångsmeddelandet
-
+        this.successMessage = '';
         return;
       }
 
-      // Om allt är korrekt ifyllt, skicka beställningen
-      this.validationMessage = ''; // Rensa eventuella gamla felmeddelanden
-      this.successMessage = "Your order has been placed!"; // Rensa framgångsmeddelandet
+      // Om allt är korrekt ifyllt, skickas beställningen
+      this.validationMessage = ''; // Rensar eventuella gamla felmeddelanden
+      this.successMessage = "Your order has been placed!"; // Skicka meddelande för genomförd order
 
+      // Om validering godkänns, skicka beställning via socket
       socket.emit("addOrder", {
         orderId: this.getOrderNumber(),
         details: this.clickPosition,
@@ -191,7 +204,7 @@ export default {
       this.resetForm();
     },
 
-
+    // Funktion för att spara platsen där användaren klickar på kartan
     setLocation: function (event) {
       var offset = {
         x: event.currentTarget.getBoundingClientRect().left,
@@ -202,14 +215,14 @@ export default {
         x: event.clientX - 10 - offset.x,
         y: event.clientY - 10 - offset.y
       }
-
-
     },
 
+    // Funktion för att lägga till burgare i beställningen
     addToOrder: function (event) {
       this.orderedBurgers[event.name] = event.amount;
     },
 
+    // Återställer alla fält i formuläret
     resetForm: function () {
       this.customer = {
         name: '',
@@ -235,47 +248,33 @@ export default {
 
 .map-container {
   width: 100%;
-  /* Fyller hela bredden av föräldern */
   height: 500px;
-  /* Anpassa höjden för att passa ditt fönster */
   overflow: scroll;
-  /* Gör det möjligt att scrolla om kartan är större än behållaren */
   border: 1px solid #ccc;
-  /* Lägg till en kantlinje för visualisering (valfritt) */
   position: relative;
-  /* För att hålla kartan inom denna behållare */
-
 }
 
 #map {
   width: 1920px;
-  /* Kartans fulla bredd */
   height: 1078px;
-  /* Kartans fulla höjd */
   background: url('/img/polacks.jpg');
-  /* Bakgrundsbilden */
   background-size: cover;
-  /* Anpassa storleken för att täcka hela området */
   background-position: center;
-  /* Centrera kartbilden */
 }
 
 .target {
   position: absolute;
   background-image: url('/img/pin.png');
-  /* Din ikon */
   background-size: cover;
   width: 35px;
   height: 35px;
   transform: translate(-20%, -65%);
-  /* Flytta markeringen så att spetsen pekar exakt där användaren klickar */
 }
 
 body {
   font-size: 12pt;
   font-family: Lexend Deca, sans-serif;
 }
-
 
 p {
   color: rgb(0, 0, 0);
@@ -345,18 +344,19 @@ section {
 }
 
 .header-container {
-  width: 100%;               /* Ensure it spans the full width */
-  height: 150px;             /* Adjust the height as needed */
-  margin: 20px 0;            /* Adjust margins if necessary */
+  width: 100%;
+  height: 150px;
+  margin: 20px 0;
   border: 1px solid #ccc;
   position: relative;
   background-image: url('/img/headeruppsala.jpeg');
   background-size: cover;
-  background-position: center 35%;  
-  display: flex;             /* Flexbox enabled */
-  align-items: center;       /* Vertical centering */
-  justify-content: center;   /* Horizontal centering */
+  background-position: center 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .header-container::before {
   content: '';
   position: absolute;
@@ -364,9 +364,9 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255); /* Adjust opacity as needed */
+  background-color: rgba(255, 255, 255);
   opacity: 0.5;
-  z-index: 0; /* Place it behind the text */
+  z-index: 0;
 }
 
 
@@ -375,8 +375,8 @@ section {
   font-family: 'Agbalumo', sans-serif;
   font-size: 36pt;
   color: black;
-  margin: 0;      /* Remove margins to prevent shifting */
-  z-index: 1;     /* Ensure the text is above the overlay */
+  margin: 0;
+  z-index: 1;
 }
 
 .burgers {
@@ -388,10 +388,8 @@ section {
 
 .menu-header {
   margin-bottom: 20px;
-  /* Skapa utrymme mellan rubriken och burgarna */
   text-align: center;
   padding-left: 30px;
-  /* Centrera rubrik och text */
 }
 
 .burger-grid {
@@ -415,7 +413,6 @@ section {
 
 .burger-item img {
   max-width: 100%;
-  /* Gör att bilden aldrig blir större än sin förälder */
   height: auto;
 }
 
@@ -432,7 +429,6 @@ section {
 
 .burger-item {
   background-color: #dae2d8;
-  /* Individuella burger-kort */
   padding: 5px;
   border-radius: 8px;
   border-style: groove;
@@ -441,7 +437,6 @@ section {
   position: relative;
   color: black;
 }
-
 
 .a {
   grid-column: 1;

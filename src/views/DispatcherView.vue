@@ -1,27 +1,30 @@
 <template>
   <div id="orders">
     <div id="orderList">
-  <div v-for="(order, key) in orders" :key="'order' + key" class="order-item">
-    <div class="order-header">
-      <!-- Ordernummer på sidan -->
-      <span class="order-number">#{{ key }}</span>
-      <!-- Lista över antalet burgare -->
-      <div class="order-details">
-        <ul>
-          <li v-for="(amount, burger) in order.orderItems" :key="burger">
-            {{ burger }} (x{{ amount }})
-          </li>
-        </ul>
+      <div v-for="(order, key) in orders" :key="'order' + key" class="order-item">
+        <div class="order-header">
+
+          <!-- Ordernummer på sidan -->
+          <span class="order-number">#{{ key }}</span>
+
+          <!-- Lista över antalet burgare -->
+          <div class="order-details">
+            <ul>
+              <li v-for="(amount, burger) in order.orderItems" :key="burger">
+                {{ burger }} (x{{ amount }})
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Kundinformationen under antalet burgare -->
+        <div class="customer-details">
+          <p><em>
+              {{ order.customer.name }}
+              ({{ order.customer.email }}, {{ order.customer.payment }}, {{ order.customer.gender }})
+            </em></p>
+        </div>
       </div>
-    </div>
-    <!-- Kundinformationen under antalet burgare -->
-    <div class="customer-details">
-      <p><em>
-        {{ order.customer.name }} 
-        ({{ order.customer.email }}, {{ order.customer.payment }}, {{ order.customer.gender }})
-      </em></p>
-    </div>
-    </div>
       <button id="clearButton" v-on:click="clearQueue">Clear Queue</button>
     </div>
     <div id="dots">
@@ -87,8 +90,8 @@ export default {
   font-size: 12pt;
   font-weight: bold;
   color: #333;
-  margin-right: 10px; /* Skjut ordernumret till vänster */
-  flex-shrink: 0; /* Håll ordernumret på plats */
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .order-details ul {
@@ -103,12 +106,11 @@ export default {
 }
 
 .customer-details p {
-  margin: 0.5em 0 0; /* Skapa avstånd ovanför kundinformationen */
+  margin: 0.5em 0 0;
   font-size: 9pt;
   color: #555;
-  font-style: italic; /* Kursiv text */
+  font-style: italic;
 }
-
 
 #dots {
   position: relative;
@@ -120,6 +122,7 @@ export default {
   cursor: crosshair;
   background-image: url('/img/polacks.jpg');
 }
+
 #dots div {
   position: absolute;
   background: red;
@@ -130,13 +133,11 @@ export default {
   text-align: center;
 }
 
-#clearButton{
+#clearButton {
   background-color: green;
 }
 
 #clearButton:hover {
   background-color: lightgreen;
 }
-
-
 </style>
